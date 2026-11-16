@@ -1,0 +1,34 @@
+{
+  "name": "kechtg",
+  "version": "1.0.0",
+  "description": "Kech Travel Game - Morocco Private Driver & Tours",
+  "main": "index.html",
+  "scripts": {
+    "build": "npm run build:globe && npm run build:testimonials && npm run build:gallery && npm run build:reels",
+    "dev": "python3 -m http.server 8000",
+    "build:gallery": "esbuild components/ui/gallery-entry.tsx --bundle --minify --format=iife --outfile=assets/js/gallery-bundle.js",
+    "build:testimonials": "esbuild components/ui/testimonials-entry.tsx --bundle --minify --format=esm --outfile=assets/js/testimonials-bundle.js",
+    "build:globe": "esbuild components/ui/globe-entry.tsx --bundle --minify --format=esm --outfile=assets/js/flag-globe-bundle.js",
+    "build:reels": "esbuild components/ui/reels-entry.tsx --bundle --minify --format=iife --outfile=assets/js/reels-bundle.js"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "class-variance-authority": "^0.7.1",
+    "cobe": "^0.6.3",
+    "country-flag-icons": "^1.5.18",
+    "gsap": "^3.15.1",
+    "lucide-react": "^1.73.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/three": "^0.187.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.7.3"
+  }
+}
