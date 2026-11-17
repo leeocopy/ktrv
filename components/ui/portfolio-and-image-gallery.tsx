@@ -152,57 +152,47 @@ export const RadialScrollGallery = forwardRef<
       return () => observer.disconnect();
     }, [childrenCount]);
 
-    useGSAP(
-      () => {
-        if (!pinRef.current || !containerRef.current || childrenCount === 0)
-          return;
+    // Smooth automatic + scroll-driven rotation (no hidden autoAlpha:0 or blank pin-spacer)
+    const hoveredRef = useRef<number | null>(null);
+    hoveredRef.current = hoveredIndex;
 
-        const prefersReducedMotion = window.matchMedia(
-          '(prefers-reduced-motion: reduce)'
-        ).matches;
+    useEffect(() => {
+      if (typeof window === 'undefined' || !containerRef.current || childrenCount === 0) return;
 
-        if (!prefersReducedMotion) {
-          gsap.fromTo(
-            containerRef.current.children,
-            { scale: 0, autoAlpha: 0 },
-            {
-              scale: 1,
-              autoAlpha: 1,
-              duration: 1.2,
-              ease: 'back.out(1.2)',
-              stagger: 0.05,
-              scrollTrigger: {
-                trigger: pinRef.current,
-                start: 'top 80%',
-                toggleActions: 'play none none reverse',
-              },
-            }
-          );
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let autoAngle = 0;
+      let scrollAngle = 0;
+      let lastScrollY = window.scrollY;
+      let rafId = 0;
+      let lastTime = performance.now();
 
-          gsap.to(containerRef.current, {
-            rotation: 360,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: pinRef.current,
-              pin: true,
-              start: startTrigger,
-              end: `+=${scrollDuration}`,
-              scrub: 1,
-              invalidateOnRefresh: true,
-            },
-          });
+      const onScroll = () => {
+        const currentY = window.scrollY;
+        const delta = currentY - lastScrollY;
+        lastScrollY = currentY;
+        scrollAngle += delta * 0.12;
+      };
+
+      const tick = (now: number) => {
+        const dt = Math.min(0.05, (now - lastTime) / 1000);
+        lastTime = now;
+        if (!prefersReducedMotion && hoveredRef.current === null && !disabled) {
+          autoAngle += dt * 8; // gentle ~8 deg/sec automatic orbit
         }
-      },
-      {
-        scope: pinRef,
-        dependencies: [
-          scrollDuration,
-          currentRadius,
-          startTrigger,
-          childrenCount,
-        ],
-      }
-    );
+        if (containerRef.current) {
+          containerRef.current.style.transform = `translateX(-50%) rotate(${autoAngle + scrollAngle}deg)`;
+        }
+        rafId = requestAnimationFrame(tick);
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      rafId = requestAnimationFrame(tick);
+
+      return () => {
+        window.removeEventListener('scroll', onScroll);
+        cancelAnimationFrame(rafId);
+      };
+    }, [childrenCount, disabled]);
 
     if (childrenCount === 0) return null;
 

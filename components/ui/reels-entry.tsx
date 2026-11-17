@@ -70,16 +70,57 @@ const reelsData: ReelItem[] = [
   }
 ];
 
+const REELS_I18N: Record<number, { title: Record<string, string>; cat: Record<string, string> }> = {
+  1: {
+    title: { fr: "Caravane au Sahara", ar: "قافلة جمال الصحراء", he: "שיירת גמלים בסהרה" },
+    cat: { fr: "Merzouga", ar: "مرزوكة", he: "מרזוגה" }
+  },
+  2: {
+    title: { fr: "Instants Berbères Authentiques", ar: "لحظات بربرية أصيلة", he: "רגעים ברבריים אותנטיים" },
+    cat: { fr: "Culture", ar: "تراث وثقافة", he: "תרבות" }
+  },
+  3: {
+    title: { fr: "Coucher de Soleil à Agafay", ar: "غروب الشمس وسفاري أكافاي", he: "שקיעה וספארי באגאפאי" },
+    cat: { fr: "Aventure", ar: "مغامرة", he: "הרפתקה" }
+  },
+  4: {
+    title: { fr: "Circuit Privé Mercedes VIP", ar: "جولة VIP بمركبات مرسيدس", he: "סיור VIP ברכבי מרצדס" },
+    cat: { fr: "Circuit Privé", ar: "جولة خاصة", he: "סיור פרטי" }
+  },
+  5: {
+    title: { fr: "Expédition Marocaine en Direct", ar: "استكشاف المغرب مباشرة", he: "משלחת חיה ברחבי מרוקו" },
+    cat: { fr: "Chauffeur VIP", ar: "سائق خاص", he: "נהג VIP" }
+  },
+  6: {
+    title: { fr: "Essaouira & Côte Atlantique", ar: "الصويرة والساحل الأطلسي", he: "אסוואירה וחוף האוקיינוס" },
+    cat: { fr: "Essaouira", ar: "الصويرة", he: "אסוואירה" }
+  },
+  7: {
+    title: { fr: "Haut Atlas & Vallée de l'Ourika", ar: "جبال الأطلس ووادي أوريكا", he: "הרי האטלס ועמק אוריקה" },
+    cat: { fr: "Atlas", ar: "الأطلس", he: "האטלס" }
+  },
+  8: {
+    title: { fr: "Délices sur Terrasse de Kasbah", ar: "مأدبة مغربية على شرفة القصبة", he: "סעודת מלכים במרפסת הקסבה" },
+    cat: { fr: "Gastronomie", ar: "ضيافة ومأكولات", he: "קולינריה" }
+  }
+};
+
 function ReelCard({
   reel,
   isActive,
-  onOpenModal
+  onOpenModal,
+  currentLang
 }: {
   reel: ReelItem;
   isActive: boolean;
   onOpenModal: (r: ReelItem) => void;
+  currentLang: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const tr = REELS_I18N[reel.id];
+  const catText = (currentLang !== "en" && tr?.cat[currentLang]) || reel.cat;
+  const titleText = (currentLang !== "en" && tr?.title[currentLang]) || reel.title;
+  const isRtl = currentLang === "ar" || currentLang === "he";
 
   // Auto-play videos automatically
   useEffect(() => {
@@ -165,16 +206,17 @@ function ReelCard({
               fontSize: "11px",
               fontWeight: 700,
               textTransform: "uppercase",
-              letterSpacing: "0.12em",
+              letterSpacing: isRtl ? "normal" : "0.12em",
               padding: "5px 12px",
               borderRadius: "999px",
               backgroundColor: "rgba(255, 255, 255, 0.95)",
               color: "#0C4942",
               backdropFilter: "blur(10px)",
-              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)"
+              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+              fontFamily: currentLang === "ar" ? "'Cairo', sans-serif" : currentLang === "he" ? "'Heebo', sans-serif" : "inherit"
             }}
           >
-            {reel.cat}
+            {catText}
           </span>
 
           <div
@@ -198,7 +240,7 @@ function ReelCard({
         </div>
 
         {/* Bottom Title & Gold Accent */}
-        <div>
+        <div dir={isRtl ? "rtl" : "ltr"} style={{ textAlign: isRtl ? "right" : "left" }}>
           <div
             className="reel-card-title"
             style={{
@@ -208,10 +250,11 @@ function ReelCard({
               lineHeight: 1.25,
               color: "#ffffff",
               textShadow: "0 2px 10px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.9)",
-              fontFamily: "Inter, sans-serif"
+              letterSpacing: "normal",
+              fontFamily: currentLang === "ar" ? "'Cairo', sans-serif" : currentLang === "he" ? "'Heebo', sans-serif" : "Inter, sans-serif"
             }}
           >
-            {reel.title}
+            {titleText}
           </div>
           <div
             style={{
@@ -231,6 +274,18 @@ function ReelCard({
 
 export function ReelsSectionApp() {
   const [selectedReel, setSelectedReel] = useState<ReelItem | null>(null);
+  const [currentLang, setCurrentLang] = useState<string>("en");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setCurrentLang(localStorage.getItem("kechtg_lang") || "en");
+    const onLang = (e: Event) => {
+      const code = (e as CustomEvent).detail || localStorage.getItem("kechtg_lang") || "en";
+      setCurrentLang(code);
+    };
+    window.addEventListener("kechtg:lang", onLang);
+    return () => window.removeEventListener("kechtg:lang", onLang);
+  }, []);
 
   return (
     <div
@@ -259,6 +314,7 @@ export function ReelsSectionApp() {
               reel={reel}
               isActive={hoveredIndex === index}
               onOpenModal={(r) => setSelectedReel(r)}
+              currentLang={currentLang}
             />
           ))
         }

@@ -24,6 +24,30 @@ const CCGATHER_COUNTRIES: FlagGlobeMarker[] = [
 export default function Demo(props: Partial<typeof settings>) {
   const s = { ...settings, ...props };
   const markers = s.allCountries ? ALL_COUNTRIES : CCGATHER_COUNTRIES;
+  const [lang, setLang] = React.useState<string>("en");
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    setLang(localStorage.getItem("kechtg_lang") || "en");
+    const onLang = (e: Event) => {
+      setLang((e as CustomEvent).detail || localStorage.getItem("kechtg_lang") || "en");
+    };
+    window.addEventListener("kechtg:lang", onLang);
+    return () => window.removeEventListener("kechtg:lang", onLang);
+  }, []);
+
+  const line1 =
+    lang === "fr" ? `Nous accueillons des voyageurs de ${markers.length} pays à travers le monde` :
+    lang === "ar" ? `نرحب بالمسافرين من ${markers.length} دولة حول العالم` :
+    lang === "he" ? `מקבלים בברכה מטיילים מ-${markers.length} מדינות ברחבי העולם` :
+    `Welcoming travelers from ${markers.length} countries across the globe`;
+
+  const line2 =
+    lang === "fr" ? "Globe 3D interactif • Faites glisser pour explorer" :
+    lang === "ar" ? "كرة أرضية ثلاثية الأبعاد تفاعلية • اسحب للاستكشاف" :
+    lang === "he" ? "גלובוס תלת-ממדי אינטראקטיבי • גררו לסיבוב וחקירה" :
+    "Interactive 3D Globe • Drag to rotate & explore";
+
   return (
     <div
       style={{
@@ -62,15 +86,6 @@ export default function Demo(props: Partial<typeof settings>) {
           baseColor="#083732"
           glowColor="#185c53"
         />
-      </div>
-
-      <div style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: "6px", marginTop: "12px" }}>
-        <p style={{ fontSize: "14px", fontWeight: 600, color: "#0C4942", margin: 0 }}>
-          {`Welcoming travelers from ${markers.length} countries across the globe`}
-        </p>
-        <p style={{ fontSize: "12px", color: "rgba(12, 73, 66, 0.7)", margin: 0 }}>
-          Interactive 3D Globe &bull; Drag to rotate &amp; explore
-        </p>
       </div>
     </div>
   );

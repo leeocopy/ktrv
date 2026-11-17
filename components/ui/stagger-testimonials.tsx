@@ -69,20 +69,78 @@ export const testimonials = [
   }
 ];
 
+const TESTIMONIAL_I18N: Record<string, { fr: string; ar: string; he: string }> = {
+  "Sarah & Mark, London, UK": {
+    fr: "L'expédition privée la plus magique de Marrakech à Merzouga. Notre chauffeur Mohamed a rendu notre séjour absolument inoubliable !",
+    ar: "أروع رحلة صحراوية خاصة من مراكش إلى مرزوكة. سائقنا الخاص محمد جعل رحلتنا بأكملها تجربة لا تُنسى!",
+    he: "משלחת המדבר הפרטית הקסומה ביותר ממרקש למרזוגה. הנהג הפרטי שלנו מוחמד הפך את המסע כולו לבלתי נשכח!"
+  },
+  "Claire D., Paris, France": {
+    fr: "Traverser le Haut Atlas avec Kech Travel Game était digne d'un grand reportage. Confort 5 étoiles et conciergerie locale dévouée 24h/7.",
+    ar: "السفر عبر جبال الأطلس الكبير مع Kech Travel Game كان مغامرة أشبه بمجلات السفر العالمية. راحة وفخامة 5 نجوم ودعم محلي مستمر 24/7.",
+    he: "המסע ברחבי הרי האטלס הגבוה עם Kech Travel Game הרגיש כמו הרפתקה מתוך מגזין יוקרה. נוחות 5 כוכבים ושירות אישי 24/7."
+  },
+  "David & Elena, New York, USA": {
+    fr: "Expérience incroyable dans le désert d'Agafay sous un ciel étoilé. Notre chauffeur a rendu chaque étape fluide, sûre et profondément authentique.",
+    ar: "تجربة لا تُصدق في صحراء أكافاي تحت النجوم الساطعة. سائقنا الفاخر جعل كل شيء سلساً، آمناً وفي غاية الأصالة.",
+    he: "חוויה יוצאת דופן במדבר אגאפאי תחת שמי כוכבים. הנהג הפרטי הפך את כל הטיול לפשוט, בטוח ואותנטי להפליא."
+  },
+  "Liam & Sophie, Sydney, Australia": {
+    fr: "Si je pouvais mettre 10 étoiles, je le ferais. De l'accueil VIP à l'aéroport jusqu'au bivouac de luxe au Sahara, tout était parfait.",
+    ar: "لو كان بإمكاني تقييمهم بـ 10 نجوم لفعلت. من الاستقبال الملكي في المطار إلى مخيم الصحراء الفاخر، كل التفاصيل كانت متقنة بعناية.",
+    he: "אם הייתי יכול להעניק 10 כוכבים, הייתי עושה זאת. מקבלת הפנים החמה בשדה התעופה ועד למאהל היוקרה בסהרה, הכל היה מושלם."
+  },
+  "Marco & Giulia, Milan, Italy": {
+    fr: "L'itinéraire sur mesure était parfait. Nous avons découvert des joyaux secrets à Fès et dans la Perle Bleue de Chefchaouen.",
+    ar: "البرنامج المصمم حسب الطلب كان مثالياً. اكتشفنا جواهر خفية في فاس وشفشاون الجوهرة الزرقاء لا تصلها الجولات العادية.",
+    he: "המסלול המותאם אישית היה מושלם. גילינו פנינים נסתרות בפאס ובפנינה הכחולה של שפשאוון שסיורים רגילים לא מגיעים אליהן."
+  },
+  "Charlotte H., Toronto, Canada": {
+    fr: "Le voyage sur mesure au Maroc à son plus haut niveau. Expertise locale sincère, véhicules privés irréprochables et hospitalité chaleureuse.",
+    ar: "السفر الفاخر المصمم خصيصاً في المغرب بأبهى صوره. خبرة محلية صادقة، مركبات خاصة فائقة النظافة، وضيافة مغربية أصيلة.",
+    he: "טיול בהתאמה אישית במרוקו ברמה הגבוהה ביותר. מומחיות מקומית אמיתית, רכבים פרטיים מצוחצחים ואירוח מכל הלב."
+  },
+  "Alexander K., Berlin, Germany": {
+    fr: "Voyager avec Kech Travel Game a été le temps fort de notre année. Van de luxe climatisé, panoramas grandioses et accueil royal.",
+    ar: "كان السفر مع Kech Travel Game أجمل محطة في عامنا. سيارة فاخرة ومكيفة، إطلالات ساحرة، ومعاملة ملكية بكل المقاييس.",
+    he: "הטיול עם Kech Travel Game היה שיא השנה שלנו. רכב פאר ממוזג ונוח, תצפיות עוצרות נשימה ויחס מלכותי."
+  },
+  "Rachel & Tom, Zurich, Switzerland": {
+    fr: "Un équilibre parfait entre confort haut de gamme et richesse culturelle marocaine. Les plus belles vacances vécues en famille.",
+    ar: "مزيج رائع بين الفخامة العصرية وثراء الثقافة المغربية. أفضل عطلة عائلية قضيناها على الإطلاق مع أطفالنا.",
+    he: "שילוב מושלם בין נוחות יוקרתית לתרבות המרוקאית העשירה. החופשה הטובה ביותר שחווינו אי פעם כמשפחה עם הילדים."
+  },
+  "Hassan & Amira, Dubai, UAE": {
+    fr: "Chaque transfert, safari dans le désert et visite culturelle a été exécuté avec une précision absolue. Les meilleurs chauffeurs privés du Maroc.",
+    ar: "كل تنقل، سفاري صحراوي وجولة ثقافية تم تنفيذه بأعلى درجات الدقة والاحترافية. أفضل سائقين خاصين في المغرب بلا منازع.",
+    he: "כל העברה, ספארי במדבר וסיור תרבותי בוצעו בדיוק מרבי. הנהגים הפרטיים הטובים ביותר במרוקו ללא תחרות."
+  },
+  "Emma & Oliver, Stockholm, Sweden": {
+    fr: "Un périple extraordinaire à travers le Maroc. La flexibilité, la bienveillance et le sens du détail de l'équipe ont dépassé nos attentes.",
+    ar: "رحلة استثنائية تفوق الوصف في المغرب. المرونة، حفاوة المعاملة والاهتمام الدقيق بكل التفاصيل من فريق Kech Travel Game فاق كل توقعاتنا.",
+    he: "מסע יוצא דופן ברחבי מרוקו. הגמישות, החום האנושי ותשומת הלב לפרטים הקטנים מצד צוות Kech Travel Game עלו על כל הציפיות."
+  }
+};
+
 interface TestimonialCardProps {
   position: number;
   testimonial: (typeof testimonials)[0];
   handleMove: (steps: number) => void;
   cardSize: number;
+  currentLang: string;
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
   position,
   testimonial,
   handleMove,
-  cardSize
+  cardSize,
+  currentLang
 }) => {
   const isCenter = position === 0;
+  const isRtl = currentLang === "ar" || currentLang === "he";
+  const tr = TESTIMONIAL_I18N[testimonial.by];
+  const quoteText = (currentLang !== "en" && tr && tr[currentLang as "fr" | "ar" | "he"]) || testimonial.testimonial;
 
   return (
     <div
@@ -91,6 +149,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         "stagger-card select-none",
         isCenter ? "stagger-card--center" : "stagger-card--side"
       )}
+      dir={isRtl ? "rtl" : "ltr"}
       style={{
         position: "absolute",
         left: "50%",
@@ -174,10 +233,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           display: "-webkit-box",
           WebkitLineClamp: 4,
           WebkitBoxOrient: "vertical",
-          overflow: "hidden"
+          overflow: "hidden",
+          letterSpacing: "normal",
+          fontFamily: currentLang === "ar" ? "'Cairo', sans-serif" : currentLang === "he" ? "'Heebo', sans-serif" : "inherit"
         }}
       >
-        "{testimonial.testimonial}"
+        "{quoteText}"
       </div>
 
       <div
@@ -202,7 +263,19 @@ export const StaggerTestimonials: React.FC = () => {
   const [cardSize, setCardSize] = useState(375);
   const [testimonialsList, setTestimonialsList] = useState(testimonials);
   const [isPaused, setIsPaused] = useState(false);
+  const [currentLang, setCurrentLang] = useState<string>("en");
   const autoPlayTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setCurrentLang(localStorage.getItem("kechtg_lang") || "en");
+    const onLang = (e: Event) => {
+      const code = (e as CustomEvent).detail || localStorage.getItem("kechtg_lang") || "en";
+      setCurrentLang(code);
+    };
+    window.addEventListener("kechtg:lang", onLang);
+    return () => window.removeEventListener("kechtg:lang", onLang);
+  }, []);
 
   const handleMove = useCallback((steps: number) => {
     setTestimonialsList((prevList) => {
@@ -342,6 +415,7 @@ export const StaggerTestimonials: React.FC = () => {
             handleMove={handleManualMove}
             position={position}
             cardSize={cardSize}
+            currentLang={currentLang}
           />
         );
       })}

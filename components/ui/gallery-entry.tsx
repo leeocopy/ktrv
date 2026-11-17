@@ -61,7 +61,48 @@ const moroccoImages: ImageItem[] = [
   }
 ];
 
+const GALLERY_TEXTS: Record<string, { title: string; desc: string }> = {
+  en: {
+    title: "The Kingdom of Morocco",
+    desc: "Scroll or drag to navigate through authentic Moroccan landscapes, private expeditions & timeless moments."
+  },
+  fr: {
+    title: "Le Royaume du Maroc",
+    desc: "Explorez des paysages spectaculaires, des expéditions privées et des moments d'exception à travers le Maroc."
+  },
+  ar: {
+    title: "المملكة المغربية",
+    desc: "استكشف روعة المناظر الطبيعية الساحرة، والرحلات الخاصة، ولحظات الأصالة في المملكة المغربية."
+  },
+  he: {
+    title: "ממלכת מרוקו",
+    desc: "גלו נופים מרהיבים, מסעות פרטיים ורגעים אותנטיים בלתי נשכחים ברחבי מרוקו."
+  }
+};
+
 export function GallerySectionApp() {
+  const [lang, setLang] = React.useState<string>(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("kechtg_lang") || "en";
+    }
+    return "en";
+  });
+
+  React.useEffect(() => {
+    const handleLang = (e: any) => {
+      const newLang = e.detail || (typeof window !== "undefined" ? localStorage.getItem("kechtg_lang") : null) || "en";
+      setLang(newLang);
+    };
+    window.addEventListener("kechtg:lang", handleLang);
+    window.addEventListener("storage", handleLang);
+    return () => {
+      window.removeEventListener("kechtg:lang", handleLang);
+      window.removeEventListener("storage", handleLang);
+    };
+  }, []);
+
+  const currentText = GALLERY_TEXTS[lang] || GALLERY_TEXTS.en;
+
   return (
     <div style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden", userSelect: "none" }}>
       {/* 3D Canvas */}
@@ -77,6 +118,8 @@ export function GallerySectionApp() {
 
       {/* Center Overlay Text (Text Lwst) */}
       <div
+        className="notranslate"
+        translate="no"
         style={{
           position: "absolute",
           inset: 0,
@@ -91,26 +134,28 @@ export function GallerySectionApp() {
         }}
       >
         <h2
-          className="gallery-heading-title"
+          className="gallery-heading-title notranslate"
+          translate="no"
           style={{
-            fontFamily: "Inter, sans-serif",
+            fontFamily: lang === "ar" ? "Cairo, sans-serif" : lang === "he" ? "Heebo, sans-serif" : "Inter, sans-serif",
             fontSize: "clamp(34px, 5.5vw, 68px)",
-            fontWeight: 700,
+            fontWeight: 800,
             color: "#0C4942 !important" as any,
-            lineHeight: 1.12,
+            lineHeight: 1.15,
             margin: "0 0 16px 0",
             maxWidth: "920px",
-            letterSpacing: "-0.025em",
+            letterSpacing: lang === "ar" || lang === "he" ? "0" : "-0.025em",
             textShadow: "0 2px 16px rgba(251, 246, 240, 0.9), 0 1px 3px rgba(255, 255, 255, 0.9)"
           }}
         >
-          Through The Moroccan Lens
+          {currentText.title}
         </h2>
 
         <p
-          className="gallery-heading-desc"
+          className="gallery-heading-desc notranslate"
+          translate="no"
           style={{
-            fontFamily: "Inter, sans-serif",
+            fontFamily: lang === "ar" ? "Cairo, sans-serif" : lang === "he" ? "Heebo, sans-serif" : "Inter, sans-serif",
             fontSize: "clamp(15px, 1.6vw, 19px)",
             color: "#0C4942 !important" as any,
             opacity: 0.88,
@@ -120,7 +165,7 @@ export function GallerySectionApp() {
             textShadow: "0 2px 12px rgba(251, 246, 240, 0.9)"
           }}
         >
-          Scroll or drag to navigate through authentic Moroccan landscapes, private expeditions & timeless moments.
+          {currentText.desc}
         </p>
       </div>
     </div>
