@@ -734,9 +734,128 @@ h1, h2, h3, h4, h5, h6,
   line-height: 1.45 !important;
 }
 
+.header__accent {
+  display: none !important;
+}
+
+/* ===================================================
+   MOBILE ONLY: STATISTIC SECTION (< 768px)
+   =================================================== */
+@media screen and (max-width: 767px) {
+  /* Title: Fix font size, prevent word breaks, natural wrapping */
+  .statistic-section [data-anim="statistic-h2"],
+  .statistic-section .h2.mobile-font-size-36,
+  .statistic-section .h2 {
+    font-size: clamp(22px, 5.8vw, 26px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.02em !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    hyphens: none !important;
+    margin-bottom: 1.5rem !important;
+    max-width: 100% !important;
+  }
+
+  .statistic-section [data-anim="statistic-h2"] br,
+  .statistic-section .h2 br {
+    display: none !important;
+  }
+
+  .statistic-section.padding-global {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+    overflow: visible !important;
+  }
+
+  .statistic-section .statistic__wrapper {
+    overflow: visible !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Cards stack vertically under each other */
+  .statistic-section .statistic__items {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    padding: 0 1.25rem !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  .statistic-section .statistic__items.slick-initialized .slick-track,
+  .statistic-section .statistic__items.slick-initialized .slick-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    transform: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  .statistic-section .statistic-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 1.25rem !important;
+    margin: 0 !important;
+    float: none !important;
+    border: 1px solid rgba(12, 73, 66, 0.12) !important;
+    border-radius: 0 !important;
+    background-color: #FFFFFF !important;
+    box-shadow: 0 4px 20px rgba(12, 73, 66, 0.05) !important;
+  }
+
+  .statistic-section .statistic-item__head {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .statistic-section [data-anim="statistic-item-title"],
+  .statistic-section .body-lg-semibold {
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: #0C4942 !important;
+    line-height: 1.3 !important;
+  }
+
+  .statistic-section [data-anim="statistic-item-subtitle"],
+  .statistic-section .body-md.color-white-50 {
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    color: rgba(12, 73, 66, 0.65) !important;
+  }
+
+  .statistic-section .statistic-item__visual {
+    width: 100% !important;
+    aspect-ratio: 16 / 11 !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .statistic-section .statistic-item__illustration {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+    display: block !important;
+  }
+
+  .statistic-section .statistic__border {
+    display: none !important;
+  }
+}
+
 </style>
 
-<link rel="stylesheet" href="assets/css/app.min.css"></div><div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header w-nav"><div class="header__in"><a href="index.html" aria-current="page" class="header__l w-inline-block w--current"><div data-anim="fade-down" class="header-logo"><span class="header-logo__arthein">Kech Travel Game</span></div><div class="header__dec header__dec--2"></div></a><div class="header__r"><ul role="list" class="header-nav"><li data-anim-delay="0.1" data-anim="fade-down" class="header-nav__item"><a href="#retreats" class="button-sm color-white header-nav__link"><span class="color-white-40 mobile-visible-inline">+</span>Tours & Trips</a></li><li data-anim-delay="0.2" data-anim="fade-down" class="header-nav__item"><a href="best-trips.html" class="button-sm color-white header-nav__link"><span class="color-white-40 mobile-visible-inline">+</span>Best Trips</a></li><li data-anim-delay="0.3" data-anim="fade-down" class="header-nav__item"><a href="contacts.html" class="button-sm color-white header-nav__link"><span class="color-white-40 mobile-visible-inline">+</span>Contact Us</a></li></ul><a href="#retreats" class="header__accent mobile-hidden w-inline-block"><div data-anim-delay="0.4" data-anim="fade-down" class="button-sm color-white">Explore</div><div class="header__dec header__dec--3"></div></a><div class="header__button mobile-visible"><a data-wf--button-primary--variant="full-width-mobile" href="index.html#retreats" class="btn-primary w-variant-a8690625-644e-5667-ae83-53408c6b0c16 w-inline-block"><div class="button-sm color-brand-green">Book Your Trip</div><div class="btn-icon w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<link rel="stylesheet" href="assets/css/app.min.css"></div><div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header w-nav"><div class="header__in"><a href="index.html" aria-current="page" class="header__l w-inline-block w--current"><div data-anim="fade-down" class="header-logo"><span class="header-logo__arthein">Kech Travel Game</span></div><div class="header__dec header__dec--2"></div></a><div class="header__r"><ul role="list" class="header-nav"><li data-anim-delay="0.1" data-anim="fade-down" class="header-nav__item"><a href="#retreats" class="button-sm color-white header-nav__link"><span class="color-white-40 mobile-visible-inline">+</span>Tours & Trips</a></li><li data-anim-delay="0.2" data-anim="fade-down" class="header-nav__item"><a href="best-trips.html" class="button-sm color-white header-nav__link"><span class="color-white-40 mobile-visible-inline">+</span>Best Trips</a></li><li data-anim-delay="0.3" data-anim="fade-down" class="header-nav__item"><a href="contacts.html" class="button-sm color-white header-nav__link"><span class="color-white-40 mobile-visible-inline">+</span>Contact Us</a></li></ul><div class="header__button mobile-visible"><a data-wf--button-primary--variant="full-width-mobile" href="index.html#retreats" class="btn-primary w-variant-a8690625-644e-5667-ae83-53408c6b0c16 w-inline-block"><div class="button-sm color-brand-green">Book Your Trip</div><div class="btn-icon w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8 0C8 0 7.32057 2.41553 7.32057 4C7.32057 5.58447 8 8 8 8C8 8 5.58447 7.32057 4 7.32057C2.41553 7.32057 0 8 0 8C0 8 0.679427 5.58447 0.679427 4C0.679427 2.41553 0 0 0 0C0 0 2.41553 0.679426 4 0.679426C5.58447 0.679426 8 0 8 0Z" fill="#0D2E37"/>
 </svg></div></a></div></div><div class="header__burger"><a href="#" class="btn-burger w-inline-block"><div class="btn-burger__in"><div class="btn-burger__line btn-burger__line--1"></div><div class="btn-burger__line btn-burger__line--2"></div></div></a></div></div><div class="mobile-menu"><ul role="list" class="header-nav"><li class="header-nav__item"><a href="#retreats" class="button-sm color-white header-nav__link"><span class="color-white-40 mobile-visible-inline">+</span>Tours & Trips</a></li><li class="header-nav__item"><a href="best-trips.html" class="button-sm color-white header-nav__link"><span class="color-white-40 mobile-visible-inline">+</span>Best Trips</a></li><li class="header-nav__item"><a href="contacts.html" class="button-sm color-white header-nav__link"><span class="color-white-40 mobile-visible-inline">+</span>Contact Us</a></li></ul><div class="header__button mobile-visible"><a data-wf--button-primary--variant="full-width-mobile" href="index.html#retreats" class="btn-primary w-variant-a8690625-644e-5667-ae83-53408c6b0c16 w-inline-block"><div class="button-sm color-brand-green">Book Your Trip</div><div class="btn-icon w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8 0C8 0 7.32057 2.41553 7.32057 4C7.32057 5.58447 8 8 8 8C8 8 5.58447 7.32057 4 7.32057C2.41553 7.32057 0 8 0 8C0 8 0.679427 5.58447 0.679427 4C0.679427 2.41553 0 0 0 0C0 0 2.41553 0.679426 4 0.679426C5.58447 0.679426 8 0 8 0Z" fill="#0D2E37"/>
@@ -778,8 +897,8 @@ h1, h2, h3, h4, h5, h6,
 
 <section class="about-section padding-global"><div class="container"><div class="head"><div class="row mobile-column"><div class="column column-3"></div><div class="column column-9"><div class="head__description"><div data-anim="about-head-description" class="h2 mobile-font-size-36 mobile-no-br">Not just trips experiences that <br/>nurture body and soul</div></div></div></div></div><div class="about"><div class="about__visual"><img src="assets/images/6979a5eeee86150be7247f79_illustration-about.jpg" loading="lazy" data-animation="about-illustration" alt="" class="about__illustration"/></div><div class="about__content"><div class="about__head"><div data-animation="about-head" class="body-xl mobile-font-size-22 mobile-no-br" style="color: #0C4942 !important;">          Kech Travel Game  is a premium wellness travel marketplace <br/>that blends the ease of booking with the feel of an editorial <br/>magazine. Discover curated programs, match them with <br/>exceptional stays, and book seamlessly.</div></div><div class="about__items"><div class="about-item"><div class="about-item__head"><div data-animation="about-item-head-1" class="h3">100+</div><div data-animation="about-item-description-1" class="body-l">Total countries <br/>travelled</div></div></div><div class="about-item"><div class="about-item__head"><div data-animation="about-item-head-2" class="h3">1 472+</div><div data-animation="about-item-description-2" class="body-l">Total retreats <br/>attended</div></div></div></div></div></div></div></section>
 
-<!-- Hero Video Animated Scroll Section -->
-<div id="hero-video-root"></div>
+<!-- Video Showcase Player Section -->
+<div id="video-player-root"></div>
 
 <section id="retreats" class="featured-section padding-global"><div class="container"><div class="head"><div class="row align-end mobile-column"><div class="column column-6"><div class="head__description mobile-margin-bottom-16"><div data-animation="featured-head" class="h2 mobile-h3">Featured <span class="mobile-fw">Tours & Trips</span></div></div></div><div class="column column-6"><div class="featured-section__head"><div data-animation="featured-head-description" class="body-md color-white-60 mobile-no-br">Discover unique locations, engaging activities, and expert- <br/>led workshops designed to inspire and refresh your spirit.</div></div></div></div></div><div class="featured"><div class="featured__items"><div class="featured-item"><div class="featured-item__text"><div class="featured-item__head"><div data-animation="featured-item-head" class="h4">3-Day Merzouga Luxury Desert Tour &amp; Camel Trek</div><div data-animation="featured-item-cost" class="featured-item__cost"><a href="contacts.html" class="featured-cost-link body-md" style="color:#0C4942;text-decoration:underline;text-underline-offset:4px;font-weight:600;">Contact us for price &amp; trip details</a></div></div><div class="featured-item__visual mobile-visible"><img src="assets/images/697b0f75d450e622eb69bbb9_1.webp" loading="lazy" alt="" class="featured-item__illustration"/></div><div class="featured-item__body"><div class="featured-item__properties"><div data-animation="featured-item-property" class="featured-item-property"><div class="featured-item-property__title"><div class="title-xs">Merzouga Sahara Desert Luxury Tour</div></div><img src="assets/images/697b12d0cfc7c0ffb4594ddd_200b069e26d5dbf25e7efe28a16ac85b_pin.svg" loading="lazy" alt="" class="featured-item-property__icon opacity-20"/></div><div data-animation="featured-item-property" class="featured-item-property"><div class="featured-item-property__title"><div class="title-xs">Feb 15 - 21, 2026 <span class="color-white-60">(7 days, 6 nights)</span></div></div><img src="assets/images/697b12d013c40d035e576fc8_calendar.svg" loading="lazy" alt="" class="featured-item-property__icon opacity-20"/></div><div data-animation="featured-item-property" class="featured-item-property"><div class="featured-item-property__title"><div class="title-xs">Private Group (1-6+)</div></div><img src="assets/images/697b12d0b38d158447cd2f5b_users.svg" loading="lazy" alt="" class="featured-item-property__icon opacity-20"/></div><div data-animation="featured-item-property" class="featured-item-property"><div class="featured-item-property__title"><div class="title-xs">Trusted by 190+ <span class="color-white-60">clients worldwide</span></div></div><img src="assets/images/697b13a6c05aa0554867732d_stars.svg" loading="lazy" alt="" class="featured-item-property__icon size-l"/></div></div><div data-animation="featured-item-button" class="featured-item__button"><a data-wf--button-secondary--variant="full-width" href="contacts.html" class="btn-secondary w-variant-28eadc15-d435-4480-c473-16eb53816cbc w-inline-block"><div class="button-sm color-white">Contact Us</div><div class="btn-icon w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8 0C8 0 7.32057 2.41553 7.32057 4C7.32057 5.58447 8 8 8 8C8 8 5.58447 7.32057 4 7.32057C2.41553 7.32057 0 8 0 8C0 8 0.679427 5.58447 0.679427 4C0.679427 2.41553 0 0 0 0C0 0 2.41553 0.679426 4 0.679426C5.58447 0.679426 8 0 8 0Z" fill="#0C4942"/>
@@ -861,6 +980,7 @@ h1, h2, h3, h4, h5, h6,
   <script defer src="assets/js/reels-bundle.js?v=1"></script>
   <script defer src="assets/js/faqs-bundle.js?v=1"></script>
   <script defer src="assets/js/footer-bundle.js?v=1"></script>
+  <script defer src="assets/js/video-bundle.js?v=1"></script>
 <!-- Floating WhatsApp Button -->
 <a href="https://wa.me/212626252231" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp (+212 626-252231)">
   <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

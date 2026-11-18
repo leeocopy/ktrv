@@ -322,7 +322,7 @@ h1, h2, h3, h4, h5, h6,
 /* Destination Map Section Container */
 .destination {
   background-color: #071418 !important;
-  border-radius: 12px !important;
+  border-radius: 0 !important;
   margin: 2rem 0 !important;
 }
 
@@ -412,7 +412,7 @@ h1, h2, h3, h4, h5, h6,
   height: 3.25rem !important;
   padding: 0.65rem !important;
   background-color: rgba(12, 73, 66, 0.07) !important;
-  border-radius: 12px !important;
+  border-radius: 0 !important;
   border: 1px solid rgba(12, 73, 66, 0.12) !important;
   display: flex !important;
   align-items: center !important;
@@ -650,3 +650,7 @@ h1, h2, h3, h4, h5, h6,
   color: #0C4942 !important;
   text-shadow: none !important;
 }
+
+.header__accent { display: none !important; }
+
+@media screen and (max-width: 767px) { .statistic-section [data-anim='statistic-h2'], .statistic-section .h2.mobile-font-size-36, .statistic-section .h2 { font-size: clamp(22px, 5.8vw, 26px) !important; line-height: 1.25 !important; letter-spacing: -0.02em !important; word-break: normal !important; overflow-wrap: break-word !important; hyphens: none !important; margin-bottom: 1.5rem !important; } .statistic-section [data-anim='statistic-h2'] br, .statistic-section .h2 br { display: none !important; } .statistic-section .statistic__wrapper { overflow: visible !important; width: 100% !important; padding: 0 !important; } .statistic-section .statistic__items { display: flex !important; flex-direction: column !important; gap: 1.5rem !important; width: 100% !important; padding: 0 1.25rem !important; margin: 0 !important; box-sizing: border-box !important; transform: none !important; } .statistic-section .statistic__items.slick-initialized .slick-track, .statistic-section .statistic__items.slick-initialized .slick-list { display: flex !important; flex-direction: column !important; gap: 1.5rem !important; width: 100% !important; transform: none !important; overflow: visible !important; padding: 0 !important; } .statistic-section .statistic-item { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding: 1.25rem !important; margin: 0 !important; float: none !important; border: 1px solid rgba(12, 73, 66, 0.12) !important; border-radius: 0 !important; background-color: #FFFFFF !important; box-shadow: 0 4px 20px rgba(12, 73, 66, 0.05) !important; } .statistic-section .statistic-item__visual { width: 100% !important; aspect-ratio: 16 / 11 !important; height: auto !important; border-radius: 0 !important; overflow: hidden !important; } .statistic-section .statistic-item__illustration { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 0 !important; display: block !important; } .statistic-section .statistic__border { display: none !important; } }

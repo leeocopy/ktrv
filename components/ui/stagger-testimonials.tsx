@@ -159,7 +159,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         boxSizing: "border-box",
         borderWidth: "2px",
         borderStyle: "solid",
-        transition: "transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease",
+        transition: "transform 1.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.9s ease, border-color 0.9s ease, box-shadow 0.9s ease",
         userSelect: "none",
         zIndex: isCenter ? 25 : Math.max(0, 15 - Math.abs(position)),
         width: cardSize,
@@ -297,21 +297,16 @@ export const StaggerTestimonials: React.FC = () => {
     });
   }, []);
 
-  // Auto-play (advance automatically every 4.5s smoothly)
+  // Auto-play (advance automatically every 3.8s smoothly)
   useEffect(() => {
-    if (isPaused) {
-      if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
-      return;
-    }
-
     autoPlayTimerRef.current = setInterval(() => {
       handleMove(1);
-    }, 4500);
+    }, 3800);
 
     return () => {
       if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
     };
-  }, [isPaused, handleMove]);
+  }, [handleMove]);
 
   // Handle manual interaction reset
   const handleManualMove = (steps: number) => {
@@ -319,12 +314,10 @@ export const StaggerTestimonials: React.FC = () => {
       clearInterval(autoPlayTimerRef.current);
     }
     handleMove(steps);
-    // Restart interval if not paused
-    if (!isPaused) {
-      autoPlayTimerRef.current = setInterval(() => {
-        handleMove(1);
-      }, 4500);
-    }
+    // Restart interval after user click
+    autoPlayTimerRef.current = setInterval(() => {
+      handleMove(1);
+    }, 4500);
   };
 
   useEffect(() => {
@@ -341,10 +334,6 @@ export const StaggerTestimonials: React.FC = () => {
   return (
     <div
       className="stagger-testimonials-container"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
-      onTouchEnd={() => setIsPaused(false)}
       style={{
         position: "relative",
         width: "100%",

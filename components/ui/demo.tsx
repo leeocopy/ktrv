@@ -3,6 +3,7 @@
 import * as React from "react";
 import { COUNTRY_COORDINATES, FlagGlobe } from "./flag-globe";
 import type { FlagGlobeMarker } from "./flag-globe";
+import VideoPlayer from "./video-player";
 
 const settings = {
   size: 500,
@@ -90,3 +91,13 @@ export default function Demo(props: Partial<typeof settings>) {
     </div>
   );
 }
+
+export const VideoPlayerDemo = ({ src = "v1.mp4" }: { src?: string }) => {
+  return (
+    <VideoPlayer
+      src={src || "v1.mp4"}
+      poster="assets/images/6979a5eeee86150be7247f79_illustration-about.jpg"
+    />
+  );
+};
+
