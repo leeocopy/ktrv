@@ -4,7 +4,7 @@
   "description": "Kech Travel Game - Morocco Private Driver & Tours",
   "main": "index.html",
   "scripts": {
-    "build": "npm run build:globe && npm run build:testimonials && npm run build:gallery && npm run build:reels && npm run build:faqs && npm run build:footer && npm run build:video",
+    "build": "npm run build:globe && npm run build:testimonials && npm run build:gallery && npm run build:reels && npm run build:faqs && npm run build:footer && npm run build:video && node scripts/prepare-public.mjs",
     "dev": "python3 -m http.server 8000",
     "build:gallery": "esbuild components/ui/gallery-entry.tsx --bundle --minify --format=iife --outfile=assets/js/gallery-bundle.js",
     "build:testimonials": "esbuild components/ui/testimonials-entry.tsx --bundle --minify --format=iife --outfile=assets/js/testimonials-bundle.js",
