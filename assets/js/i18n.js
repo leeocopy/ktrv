@@ -1289,25 +1289,30 @@ const VALUES_DATA = [
 
       .mobile-lang-wrap {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
+        flex-direction: column;
+        align-items: stretch;
+        justifyContent: center;
+        gap: 0.55rem;
         padding: 0.9rem 0;
         margin: 0.5rem 0;
         border-top: 1px solid rgba(12, 73, 66, 0.12);
         border-bottom: 1px solid rgba(12, 73, 66, 0.12);
         width: 100%;
+        box-sizing: border-box;
       }
       .mobile-lang-btn {
-        display: inline-flex;
+        display: flex;
         align-items: center;
-        gap: 0.4rem;
-        padding: 0.45rem 0.75rem;
+        justifyContent: flex-start;
+        gap: 0.75rem;
+        padding: 0.7rem 1rem;
+        width: 100%;
+        box-sizing: border-box;
         border-radius: 8px;
         background: rgba(12, 73, 66, 0.05);
         border: 1px solid rgba(12, 73, 66, 0.15);
         color: #0C4942;
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.2s ease;

@@ -308,7 +308,15 @@ export function FlagGlobe({
   const flagRefs = React.useRef<Array<HTMLDivElement | null>>([]);
   const globeRef = React.useRef<any>(null);
   const kickRef = React.useRef<() => void>(() => {});
-  const [measured, setMeasured] = React.useState(size || 500);
+  const [measured, setMeasured] = React.useState(() => {
+    if (typeof window !== "undefined") {
+      const w = window.innerWidth;
+      if (w > 0 && w < 500) {
+        return Math.floor(w * 0.9);
+      }
+    }
+    return size || 500;
+  });
   const [glState, setGlState] = React.useState<GlState>("pending");
   const [glVersion, setGlVersion] = React.useState(0);
   const [mounted, setMounted] = React.useState(false);
@@ -382,6 +390,9 @@ export function FlagGlobe({
       const h = root.clientHeight || root.offsetHeight || 500;
       const val = Math.min(w, h);
       setMeasured(val > 50 ? Math.floor(val) : 500);
+      try {
+        globeRef.current?.resize?.();
+      } catch (e) {}
     };
     const observer = new ResizeObserver(measure);
     observer.observe(root);
@@ -473,8 +484,8 @@ export function FlagGlobe({
         }
         state.phi = s.phi;
         state.theta = s.theta;
-        state.width = s.size * pixelRatio;
-        state.height = s.size * pixelRatio;
+        state.width = canvas.width;
+        state.height = canvas.height;
         if (s.dark !== undefined) state.dark = s.dark ? 1 : 0;
         if (s.baseColor) state.baseColor = s.baseColor;
         if (s.glowColor) state.glowColor = s.glowColor;
