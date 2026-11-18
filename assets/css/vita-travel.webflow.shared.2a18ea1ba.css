@@ -2576,8 +2576,8 @@ textarea.w-input, textarea.w-select {
 
 .combine {
   aspect-ratio: 1440 / 863;
-  background-image: url("../images/697b1f5e0aeba6bb251058df_illustration.webp");
-  background-position: 0 0;
+  background-image: url("../images/willy-wo-pXnMG0FfSwA-unsplash.jpg");
+  background-position: center center;
   background-size: cover;
   padding-top: 5rem;
   position: relative;
@@ -4435,8 +4435,9 @@ textarea.w-input, textarea.w-select {
 
   .combine {
     aspect-ratio: 375 / 765;
-    background-image: url("../images/698b622b74261b36810ef710_combine-mobile.webp");
-    background-position: 50% 0;
+    background-image: url("../images/willy-wo-pXnMG0FfSwA-unsplash.jpg");
+    background-position: center top;
+    background-size: cover;
     background-repeat: no-repeat;
     padding-top: 4rem;
   }
