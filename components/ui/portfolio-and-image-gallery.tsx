@@ -103,8 +103,11 @@ export const RadialScrollGallery = forwardRef<
     ref
   ) => {
     const pinRef = useRef<HTMLDivElement>(null);
+    const stageRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLUListElement>(null);
     const childRef = useRef<HTMLLIElement>(null);
+    const progressBarRef = useRef<HTMLDivElement>(null);
+    const counterRef = useRef<HTMLSpanElement>(null);
 
     const mergedRef = useMergeRefs(ref, pinRef);
 
@@ -113,9 +116,18 @@ export const RadialScrollGallery = forwardRef<
       null
     );
     const [isMounted, setIsMounted] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(true);
 
     const currentRadius = useResponsiveValue(baseRadius, mobileRadius);
     const circleDiameter = currentRadius * 2;
+
+    useEffect(() => {
+      if (typeof window === 'undefined') return;
+      const updateDesktop = () => setIsDesktop(window.innerWidth >= 768);
+      updateDesktop();
+      window.addEventListener('resize', updateDesktop);
+      return () => window.removeEventListener('resize', updateDesktop);
+    }, []);
 
     const { visibleDecimal, hiddenDecimal } = useMemo(() => {
       const clamped = Math.max(10, Math.min(100, visiblePercentage));
@@ -152,47 +164,78 @@ export const RadialScrollGallery = forwardRef<
       return () => observer.disconnect();
     }, [childrenCount]);
 
-    // Smooth automatic + scroll-driven rotation (no hidden autoAlpha:0 or blank pin-spacer)
-    const hoveredRef = useRef<number | null>(null);
-    hoveredRef.current = hoveredIndex;
-
+    // Pure ScrollSmoother-compatible scroll runway:
+    // Reads getBoundingClientRect() every animation frame (works identically with
+    // GSAP ScrollSmoother transforms AND native scroll), keeps the stage pixel-locked
+    // in the viewport without position:fixed or React re-renders, and scrubs a full
+    // 360° rotation across all videos before releasing to the next section.
     useEffect(() => {
-      if (typeof window === 'undefined' || !containerRef.current || childrenCount === 0) return;
+      if (typeof window === 'undefined' || !isDesktop || disabled || childrenCount === 0) {
+        return;
+      }
 
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      let autoAngle = 0;
-      let scrollAngle = 0;
-      let lastScrollY = window.scrollY;
       let rafId = 0;
-      let lastTime = performance.now();
+      let currentProgress = 0;
+      let lastCounterText = '';
 
-      const onScroll = () => {
-        const currentY = window.scrollY;
-        const delta = currentY - lastScrollY;
-        lastScrollY = currentY;
-        scrollAngle += delta * 0.12;
-      };
+      const tick = () => {
+        const runway = pinRef.current;
+        const stage = stageRef.current;
+        const wheel = containerRef.current;
 
-      const tick = (now: number) => {
-        const dt = Math.min(0.05, (now - lastTime) / 1000);
-        lastTime = now;
-        if (!prefersReducedMotion && hoveredRef.current === null && !disabled) {
-          autoAngle += dt * 8; // gentle ~8 deg/sec automatic orbit
+        if (runway && stage && wheel) {
+          const rect = runway.getBoundingClientRect();
+          const vh = window.innerHeight || 800;
+          const travel = Math.max(1, rect.height - vh);
+
+          // Lock stage to viewport top while scrolling through the runway
+          const clampedOffset = Math.min(travel, Math.max(0, -rect.top));
+          stage.style.transform = `translate3d(0, ${clampedOffset}px, 0)`;
+
+          const targetProgress = clampedOffset / travel;
+          // Subtle smoothing for buttery rotation
+          currentProgress += (targetProgress - currentProgress) * 0.18;
+          if (Math.abs(targetProgress - currentProgress) < 0.0005) {
+            currentProgress = targetProgress;
+          }
+
+          const rot = (direction === 'rtl' ? 360 : -360) * currentProgress;
+          wheel.style.transform = `translateX(-50%) rotate(${rot}deg)`;
+
+          if (progressBarRef.current) {
+            progressBarRef.current.style.width = `${(currentProgress * 100).toFixed(1)}%`;
+          }
+          if (counterRef.current) {
+            const idxNum = Math.min(
+              childrenCount,
+              Math.max(1, Math.round(currentProgress * (childrenCount - 1)) + 1)
+            );
+            const nextText = `${idxNum} / ${childrenCount}`;
+            if (nextText !== lastCounterText) {
+              counterRef.current.textContent = nextText;
+              lastCounterText = nextText;
+            }
+          }
         }
-        if (containerRef.current) {
-          containerRef.current.style.transform = `translateX(-50%) rotate(${autoAngle + scrollAngle}deg)`;
-        }
+
         rafId = requestAnimationFrame(tick);
       };
 
-      window.addEventListener('scroll', onScroll, { passive: true });
       rafId = requestAnimationFrame(tick);
 
+      // Refresh ScrollTrigger/ScrollSmoother once after runway height settles
+      const refreshTimer = window.setTimeout(() => {
+        try {
+          const st = (window as any).ScrollTrigger;
+          st && st.refresh();
+        } catch (e) {}
+      }, 300);
+
       return () => {
-        window.removeEventListener('scroll', onScroll);
         cancelAnimationFrame(rafId);
+        window.clearTimeout(refreshTimer);
       };
-    }, [childrenCount, disabled]);
+    }, [isDesktop, disabled, childrenCount, direction]);
 
     if (childrenCount === 0) return null;
 
@@ -210,50 +253,59 @@ export const RadialScrollGallery = forwardRef<
         ref={mergedRef}
         className={`radial-scroll-gallery-wrapper ${className}`}
         style={{
-          minHeight: '650px',
           width: '100%',
           position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'hidden',
+          height: isDesktop ? `calc(100vh + ${scrollDuration}px)` : 'auto',
           ...style,
         }}
         {...rest}
       >
         <div
+          ref={stageRef}
           style={{
             position: 'relative',
             width: '100%',
+            height: isDesktop ? '100vh' : `${visibleAreaHeight}px`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             overflow: 'hidden',
-            height: `${visibleAreaHeight}px`,
-            maskImage:
-              'linear-gradient(to top, transparent 0%, black 35%, black 100%)',
-            WebkitMaskImage:
-              'linear-gradient(to top, transparent 0%, black 35%, black 100%)',
+            willChange: 'transform',
           }}
         >
-          <ul
-            ref={containerRef}
-            className={`
-              ${disabled ? 'opacity-50 pointer-events-none grayscale' : ''}
-              ${isMounted ? 'opacity-100' : 'opacity-0'}
-            `}
-            dir={direction}
+          <div
             style={{
-              position: 'absolute',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              willChange: 'transform',
-              margin: 0,
-              padding: 0,
-              listStyle: 'none',
-              transition: 'opacity 0.5s ease-out',
-              width: `${circleDiameter}px`,
-              height: `${circleDiameter}px`,
-              bottom: `-${circleDiameter * hiddenDecimal}px`,
+              position: 'relative',
+              width: '100%',
+              overflow: 'hidden',
+              height: `${visibleAreaHeight}px`,
+              maskImage:
+                'linear-gradient(to top, transparent 0%, black 35%, black 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to top, transparent 0%, black 35%, black 100%)',
             }}
           >
+            <ul
+              ref={containerRef}
+              className={`
+                ${disabled ? 'opacity-50 pointer-events-none grayscale' : ''}
+                ${isMounted ? 'opacity-100' : 'opacity-0'}
+              `}
+              dir={direction}
+              style={{
+                position: 'absolute',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                willChange: 'transform',
+                margin: 0,
+                padding: 0,
+                listStyle: 'none',
+                transition: 'opacity 0.5s ease-out',
+                width: `${circleDiameter}px`,
+                height: `${circleDiameter}px`,
+                bottom: `-${circleDiameter * hiddenDecimal}px`,
+              }}
+            >
             {childrenNodes.map((child, index) => {
               const angle = (index / childrenCount) * 2 * Math.PI;
               let x = currentRadius * Math.cos(angle);
@@ -314,7 +366,58 @@ export const RadialScrollGallery = forwardRef<
                 </li>
               );
             })}
-          </ul>
+            </ul>
+          </div>
+          {/* Crisp scroll progress bar outside maskImage so it never fades */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '22px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              zIndex: 120,
+              pointerEvents: 'none',
+              backgroundColor: 'rgba(251, 246, 240, 0.88)',
+              backdropFilter: 'blur(6px)',
+              padding: '6px 14px',
+              borderRadius: '999px',
+              border: '1px solid rgba(12, 73, 66, 0.14)',
+            }}
+          >
+            <div
+              style={{
+                width: '160px',
+                height: '4px',
+                borderRadius: '999px',
+                backgroundColor: 'rgba(12, 73, 66, 0.16)',
+                overflow: 'hidden',
+              }}
+            >
+              <div
+                ref={progressBarRef}
+                style={{
+                  width: '0%',
+                  height: '100%',
+                  backgroundColor: '#E09E52',
+                  borderRadius: '999px',
+                }}
+              />
+            </div>
+            <span
+              ref={counterRef}
+              style={{
+                fontSize: '12px',
+                fontWeight: 700,
+                color: '#0C4942',
+                fontVariantNumeric: 'tabular-nums',
+              }}
+            >
+              1 / {childrenCount}
+            </span>
+          </div>
         </div>
       </div>
     );

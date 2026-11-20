@@ -51,22 +51,85 @@ const reelsData: ReelItem[] = [
     id: 6,
     title: "Essaouira & Coastal Retreat",
     cat: "Essaouira",
-    video: "videos/reel-4.mp4",
+    video: "videos/reel-6.mp4",
     poster: "photo/tour-argan-goats-essaouira.jpg"
   },
   {
     id: 7,
     title: "Atlas Mountains & Ourika",
     cat: "Atlas",
-    video: "videos/reel-5.mp4",
+    video: "videos/reel-7.mp4",
     poster: "photo/andri-klopfenstein-zGEkvID6vz8-unsplash.jpg"
   },
   {
     id: 8,
     title: "Kasbah Terrace Feast",
     cat: "Gastronomy",
-    video: "videos/reel-3.mp4",
+    video: "videos/reel-8.mp4",
     poster: "photo/tour-terrace-lunch.jpg"
+  },
+  {
+    id: 9,
+    title: "Golden Dunes Sunrise",
+    cat: "Sahara",
+    video: "videos/reel-9.mp4",
+    poster: "photo/sergey-pesterev-9-5-WYEBDz0-unsplash.jpg"
+  },
+  {
+    id: 10,
+    title: "Marrakech Medina Magic",
+    cat: "Marrakech",
+    video: "videos/reel-10.mp4",
+    poster: "photo/calin-stan-7a_PHX91su8-unsplash.jpg"
+  },
+  {
+    id: 11,
+    title: "Dades & Todra Gorges",
+    cat: "Canyons",
+    video: "videos/reel-11.mp4",
+    poster: "photo/abdou-faiz-06hnE4eKNAU-unsplash.jpg"
+  },
+  {
+    id: 12,
+    title: "Desert Camp Under the Stars",
+    cat: "Luxury Camp",
+    video: "videos/reel-12.mp4",
+    poster: "photo/mehdi-el-marouazi-xhzPAomSpwg-unsplash.jpg"
+  },
+  {
+    id: 13,
+    title: "Imperial Cities Heritage",
+    cat: "Fes & Meknes",
+    video: "videos/reel-13.mp4",
+    poster: "photo/sour-moha-5t2SP3vQz28-unsplash.jpg"
+  },
+  {
+    id: 14,
+    title: "High Atlas Scenic Road",
+    cat: "Road Trip",
+    video: "videos/reel-14.mp4",
+    poster: "photo/tour-airport-arrival.jpg"
+  },
+  {
+    id: 15,
+    title: "Chefchaouen Blue Alleys",
+    cat: "Blue Pearl",
+    video: "videos/reel-15.mp4",
+    poster: "photo/tour-traditional-gate.jpg"
+  },
+  {
+    id: 16,
+    title: "Nomad Hospitality & Tea",
+    cat: "Tradition",
+    video: "videos/reel-16.mp4",
+    poster: "photo/tour-terrace-lunch.jpg"
+  },
+  {
+    id: 17,
+    title: "Bespoke Morocco Memories",
+    cat: "Tailor-Made",
+    video: "videos/reel-17.mp4",
+    poster: "photo/tour-camels-merzouga.jpg"
   }
 ];
 
@@ -102,6 +165,42 @@ const REELS_I18N: Record<number, { title: Record<string, string>; cat: Record<st
   8: {
     title: { fr: "Délices sur Terrasse de Kasbah", ar: "مأدبة مغربية على شرفة القصبة", he: "סעודת מלכים במרפסת הקסבה" },
     cat: { fr: "Gastronomie", ar: "ضيافة ومأكولات", he: "קולינריה" }
+  },
+  9: {
+    title: { fr: "Lever de Soleil sur les Dunes", ar: "شروق الشمس فوق الكثبان الذهبية", he: "זריחה מעל דיונות הזהב" },
+    cat: { fr: "Sahara", ar: "الصحراء", he: "סהרה" }
+  },
+  10: {
+    title: { fr: "Magie de la Médina de Marrakech", ar: "سحر المدينة العتيقة بمراكش", he: "קסם המדינה של מרקש" },
+    cat: { fr: "Marrakech", ar: "مراكش", he: "מרקש" }
+  },
+  11: {
+    title: { fr: "Gorges du Dadès & Todra", ar: "مضايق دادس وتودغا الساحرة", he: "קניוני דאדס וטודרה" },
+    cat: { fr: "Canyons", ar: "مضايق", he: "קניונים" }
+  },
+  12: {
+    title: { fr: "Bivouac de Luxe sous les Étoiles", ar: "مخيم صحراوي فاخر تحت النجوم", he: "מאהל יוקרה תחת הכוכבים" },
+    cat: { fr: "Bivouac Luxe", ar: "مخيم فاخر", he: "מאהל יוקרה" }
+  },
+  13: {
+    title: { fr: "Trésors des Villes Impériales", ar: "تراث المدن الإمبراطورية", he: "מורשת ערי המלוכה" },
+    cat: { fr: "Fès & Meknès", ar: "فاس ومكناس", he: "פאס ומקנס" }
+  },
+  14: {
+    title: { fr: "Routes Panoramiques du Haut Atlas", ar: "طرق جبال الأطلس البانورامية", he: "כבישי הנוף של האטלס" },
+    cat: { fr: "Road Trip", ar: "رحلة طريق", he: "רוד טריפ" }
+  },
+  15: {
+    title: { fr: "Ruelles Bleues de Chefchaouen", ar: "أزقة شفشاون الزرقاء الساحرة", he: "הסמטאות הכחולות של שפשאוון" },
+    cat: { fr: "Perle Bleue", ar: "الجوهرة الزرقاء", he: "הפנינה הכחולה" }
+  },
+  16: {
+    title: { fr: "Hospitalité Nomade & Thé à la Menthe", ar: "ضيافة الصحراء والشاي المغربي", he: "אירוח נוודי ותה נענע" },
+    cat: { fr: "Tradition", ar: "أصالة", he: "מסורת" }
+  },
+  17: {
+    title: { fr: "Souvenirs Sur Mesure au Maroc", ar: "ذكريات مغربية مصممة حسب الطلب", he: "זיכרונות מרוקו בהתאמה אישית" },
+    cat: { fr: "Sur Mesure", ar: "حسب الطلب", he: "בהתאמה אישית" }
   }
 };
 
@@ -122,16 +221,35 @@ function ReelCard({
   const titleText = (currentLang !== "en" && tr?.title[currentLang]) || reel.title;
   const isRtl = currentLang === "ar" || currentLang === "he";
 
-  // Auto-play videos automatically
+  // Play video only when visible in/near viewport to keep page fast & lightweight
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
     v.muted = true;
     v.defaultMuted = true;
-    const playPromise = v.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {});
+
+    if (typeof IntersectionObserver === "undefined") {
+      v.play().catch(() => {});
+      return;
     }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        if (entry.isIntersecting) {
+          if (v.preload === "none") v.preload = "metadata";
+          const p = v.play();
+          if (p !== undefined) p.catch(() => {});
+        } else {
+          if (!v.paused) v.pause();
+        }
+      },
+      { rootMargin: "250px 0px" }
+    );
+
+    observer.observe(v);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -165,7 +283,7 @@ function ReelCard({
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
         style={{
           width: "100%",
           height: "100%",
@@ -553,7 +671,7 @@ export function ReelsSectionApp() {
         backgroundColor: "#FBF6F0",
         paddingTop: "10px",
         paddingBottom: "10px",
-        overflow: "hidden"
+        overflowX: "clip"
       }}
     >
       <style>{`
@@ -576,13 +694,14 @@ export function ReelsSectionApp() {
         }
       `}</style>
 
-      {/* Desktop Radial Wheel: 100% UNTOUCHED */}
+      {/* Desktop Radial Wheel: Pinned until full 360° scroll rotation completes */}
       <div className="reels-desktop-wrapper">
         <RadialScrollGallery
-          baseRadius={530}
+          baseRadius={920}
           mobileRadius={240}
-          visiblePercentage={56}
-          scrollDuration={2200}
+          visiblePercentage={24}
+          scrollDuration={4500}
+          startTrigger="center center"
           className="reels-radial-gallery"
           style={{ minHeight: "680px" }}
         >

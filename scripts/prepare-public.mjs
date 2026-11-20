@@ -11,6 +11,7 @@ const skip = new Set([
   "lib",
   "scratch",
   "scripts",
+  "newvideo",
   ".git",
   ".vercel",
 ]);

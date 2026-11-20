@@ -67,20 +67,43 @@ export const VideoPlayer = ({
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    if (videoRef.current && autoPlay) {
-      videoRef.current.muted = true;
+    const v = videoRef.current;
+    if (!v || !autoPlay) return;
+
+    const tryPlay = () => {
+      v.muted = true;
+      v.defaultMuted = true;
       setIsMuted(true);
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch(() => {
-            setIsPlaying(false);
-          });
+      const p = v.play();
+      if (p !== undefined) {
+        p.then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
       }
+    };
+
+    tryPlay();
+
+    const onCanPlay = () => {
+      if (v.paused) tryPlay();
+    };
+    v.addEventListener("canplay", onCanPlay);
+
+    let observer: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0]?.isIntersecting && v.paused) {
+            tryPlay();
+          }
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(v);
     }
+
+    return () => {
+      v.removeEventListener("canplay", onCanPlay);
+      observer?.disconnect();
+    };
   }, [autoPlay]);
 
   const togglePlay = () => {
@@ -178,6 +201,7 @@ export const VideoPlayer = ({
         onLoadedMetadata={handleTimeUpdate}
         src={src}
         poster={poster}
+        preload="metadata"
         autoPlay={autoPlay}
         muted={isMuted}
         loop

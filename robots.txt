@@ -1,0 +1,38 @@
+# Kech Travel Game - Search Engine & AI (GEO) Crawler Policy
+User-agent: *
+Allow: /
+Disallow: /7-day-mystic-mountain-retreat-in-romania.html
+Disallow: /7-day-solo-travelers-retreat-fun-in-bali.html
+Disallow: /8-day-juice-detox-retreat-in-portugal.html
+Disallow: /morocco-holiday-desert-moon.html
+Disallow: /photography-retreat-tour-in-magical-morocco.html
+Disallow: /retreat.html
+Disallow: /coaches.html
+
+# Explicitly welcome AI Search & Generative Engine Optimization (GEO) crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://kechtravelgame.com/sitemap.xml
+# AI / LLM Context Profile: https://kechtravelgame.com/llms.txt

@@ -807,6 +807,146 @@ const VALUES_DATA = [
         ar: "نال ثقة أكثر من 287 مسافراً",
         he: "מומלץ על ידי 287+ מטיילים"
       }
+    },
+    {
+      title: {
+        en: "4-Day Marrakech to Merzouga Desert & Dades Gorges Tour",
+        fr: "Circuit 4 Jours : Marrakech, Gorges du Dadès & Désert de Merzouga",
+        ar: "جولة 4 أيام: مراكش، مضايق دادس وصحراء مرزوكة الذهبية",
+        he: "טיול 4 ימים: מרקש, קניון דאדס ומדבר הסהרה מרזוגה"
+      },
+      tag: {
+        en: "Marrakech, Ait Ben Haddou, Dades & Merzouga",
+        fr: "Marrakech, Aït Ben Haddou, Dadès & Merzouga",
+        ar: "مراكش، آيت بن حدو، دادس ومرزوكة",
+        he: "מרקש, איית בן חדו, דאדס ומרזוגה"
+      },
+      duration: {
+        en: "4 Days / 3 Nights",
+        fr: "4 Jours / 3 Nuits",
+        ar: "4 أيام / 3 ليالٍ",
+        he: "4 ימים / 3 לילות"
+      },
+      vehicle: {
+        en: "Private Luxury SUV / Minivan",
+        fr: "SUV / Minivan Privé VIP",
+        ar: "سيارة VIP خاصة مع سائق",
+        he: "רכב שטח / מיניוואן VIP פרטי"
+      },
+      clients: {
+        en: "Trusted by 240+ clients worldwide",
+        fr: "Plébiscité par +240 voyageurs",
+        ar: "نال ثقة أكثر من 240 مسافراً",
+        he: "מומלץ על ידי 240+ מטיילים"
+      }
+    },
+    {
+      title: {
+        en: "11-Day Ultimate Morocco Discovery: Imperial Cities & Sahara",
+        fr: "Grand Circuit 11 Jours : Villes Impériales, Chefchaouen & Sahara",
+        ar: "الرحلة الكبرى 11 يوماً: المدن الإمبراطورية، شفشاون والصحراء",
+        he: "טיול מקיף 11 ימים במרוקו: ערי המלוכה, שפשאוון והסהרה"
+      },
+      tag: {
+        en: "Casablanca, Chefchaouen, Fes, Merzouga & Marrakech",
+        fr: "Casablanca, Chefchaouen, Fès, Merzouga & Marrakech",
+        ar: "الدار البيضاء، شفشاون، فاس، مرزوكة ومراكش",
+        he: "קזבלנקה, שפשאוון, פאס, מרזוגה ומרקש"
+      },
+      duration: {
+        en: "11 Days / 10 Nights",
+        fr: "11 Jours / 10 Nuits",
+        ar: "11 يوماً / 10 ليالٍ",
+        he: "11 ימים / 10 לילות"
+      },
+      vehicle: {
+        en: "Private VIP Driver & Luxury Riad Stays",
+        fr: "Chauffeur Privé VIP & Riads de Luxe",
+        ar: "سائق خاص VIP وإقامة في رياضات فاخرة",
+        he: "נהג VIP פרטי ואירוח בריאדים יוקרתיים"
+      },
+      clients: {
+        en: "Trusted by 175+ clients worldwide",
+        fr: "Plébiscité par +175 voyageurs",
+        ar: "نال ثقة أكثر من 175 مسافراً",
+        he: "מומלץ על ידי 175+ מטיילים"
+      }
+    },
+    {
+      title: {
+        en: "12-Day Complete Morocco Grand Tour: North to South",
+        fr: "Circuit Complet 12 Jours au Maroc : Du Nord au Sud",
+        ar: "جولة 12 يوماً لاكتشاف المغرب بالكامل من الشمال إلى الجنوب",
+        he: "מסע שלם 12 ימים במרוקו: מהצפון ועד הדרום"
+      },
+      tag: {
+        en: "Tangier, Chefchaouen, Fes, Sahara, Marrakech & Essaouira",
+        fr: "Tanger, Chefchaouen, Fès, Sahara, Marrakech & Essaouira",
+        ar: "طنجة، شفشاون، فاس، الصحراء، مراكش والصويرة",
+        he: "טנג'יר, שפשאוון, פאס, סהרה, מרקש ואסווירה"
+      },
+      duration: {
+        en: "12 Days / 11 Nights",
+        fr: "12 Jours / 11 Nuits",
+        ar: "12 يوماً / 11 ليلة",
+        he: "12 ימים / 11 לילות"
+      },
+      vehicle: {
+        en: "Private Chauffeur & All-Inclusive Comfort",
+        fr: "Chauffeur Privé & Confort Tout Inclus",
+        ar: "سائق خاص وراحة فاخرة طوال الرحلة",
+        he: "נהג פרטי ונוחות מלאה לאורך כל המסלול"
+      },
+      clients: {
+        en: "Trusted by 210+ clients worldwide",
+        fr: "Plébiscité par +210 voyageurs",
+        ar: "نال ثقة أكثر من 210 مسافراً",
+        he: "מומלץ על ידי 210+ מטיילים"
+      }
+    },
+    {
+      title: {
+        en: "Custom Tailor-Made Morocco Tours — On Demand",
+        fr: "Circuits Sur Mesure au Maroc — À la Demande",
+        ar: "رحلات وجولات مخصصة حسب الطلب في جميع أنحاء المغرب",
+        he: "טיולים בהתאמה אישית מלאה במרוקו — לפי בקשה"
+      },
+      costText: {
+        en: "Contact us to build your custom itinerary",
+        fr: "Contactez-nous pour créer votre circuit sur mesure",
+        ar: "تواصل معنا لتصميم برنامج رحلتك حسب طلبك",
+        he: "צרו קשר לבניית מסלול אישי משלכם"
+      },
+      btnText: {
+        en: "Request Custom Tour",
+        fr: "Demander un Circuit Sur Mesure",
+        ar: "اطلب رحلتك حسب الطلب",
+        he: "בקשו טיול בהתאמה אישית"
+      },
+      tag: {
+        en: "Any Destination Across Morocco — Built Around You",
+        fr: "Toutes Destinations au Maroc — 100% Personnalisé",
+        ar: "جميع الوجهات المغربية — مصممة خصيصاً لكم",
+        he: "כל היעדים במרוקו — מותאם בדיוק עבורכם"
+      },
+      duration: {
+        en: "Flexible Duration (1 to 15+ Days on Request)",
+        fr: "Durée Flexible (1 à 15+ Jours à la Demande)",
+        ar: "مدة مرنة (من يوم واحد إلى 15+ يوماً حسب الطلب)",
+        he: "משך גמיש (יום אחד עד 15+ ימים לפי בקשה)"
+      },
+      vehicle: {
+        en: "Private Group, Couple, Family or Solo",
+        fr: "Privé : Couple, Famille, Groupe ou Solo",
+        ar: "جولات خاصة: للأزواج، العائلات، المجموعات أو الأفراد",
+        he: "טיול פרטי: לזוגות, משפחות, קבוצות או יחידים"
+      },
+      clients: {
+        en: "100% Tailor-Made According to Your Request",
+        fr: "100% Sur Mesure Selon Vos Envies",
+        ar: "مصممة 100% على حسب طلبكم وميزانيتكم",
+        he: "100% בהתאמה אישית לפי הרצונות שלכם"
+      }
     }
   ];
 
@@ -1378,7 +1518,10 @@ const VALUES_DATA = [
       html[dir="rtl"] .combine__item {
         text-align: right !important;
       }
-      html[dir="rtl"] .featured-item__properties {
+      html[dir="rtl"] .featured-item__properties,
+      html[dir="rtl"] .featured-item__head,
+      html[dir="rtl"] .featured-item__cost,
+      html[dir="rtl"] #custom-tours-banner {
         text-align: right !important;
       }
       @media (max-width: 767px) {
@@ -1561,13 +1704,13 @@ const VALUES_DATA = [
     const featuredSub = document.querySelector('#retreats .column-6 .featured-section__head .body-md, #retreats .column-6 .body-md');
     if (featuredSub) {
       if (isFr) {
-        featuredSub.textContent = "Explorez des destinations uniques, des activités exclusives et des expéditions guidées dans le désert, conçues pour vous inspirer.";
+        featuredSub.textContent = "Découvrez nos circuits privés de 1 à 12 jours à travers le Maroc — ainsi que des voyages 100% sur mesure créés à la demande.";
       } else if (isAr) {
-        featuredSub.textContent = "اكتشفوا وجهات ساحرة، رحلات استكشافية خاصة، وسفاري صحراوي بإشراف نخبة من السائقين والمرشدين المحليين لراحتكم وسعادتكم.";
+        featuredSub.textContent = "اكتشفوا رحلاتنا الخاصة من يوم واحد إلى 12 يوماً عبر المغرب — مع إمكانية تنظيم جميع الجولات 100% حسب الطلب.";
       } else if (isHe) {
-        featuredSub.textContent = "גלו יעדים ייחודיים, פעילויות מרתקות ומסעות מדבר מודרכים שנועדו להעניק לכם השראה וזיכרונות בלתי נשכחים.";
+        featuredSub.textContent = "גלו את הסיורים הפרטיים שלנו מיום אחד ועד 12 ימים ברחבי מרוקו — וכן טיולים בהתאמה אישית מלאה לפי בקשה.";
       } else {
-        featuredSub.textContent = "Discover unique locations, engaging activities, and expert-led workshops designed to inspire and refresh your spirit.";
+        featuredSub.textContent = "Discover our curated 1 to 12-day private tours across Morocco — plus 100% custom tailor-made itineraries crafted on demand.";
       }
     }
 
@@ -1586,10 +1729,14 @@ const VALUES_DATA = [
       // Cost -> Contact link for price & trip details
       const costLink = card.querySelector('.featured-item__cost .featured-cost-link');
       if (costLink) {
-        costLink.textContent = isFr ? "Contactez-nous pour le tarif et les détails" :
-                               isAr ? "تواصل معنا لمعرفة السعر وتفاصيل الرحلة" :
-                               isHe ? "צרו קשר לקבלת מחיר ופרטי המסע" :
-                               "Contact us for price & trip details";
+        if (data.costText) {
+          costLink.textContent = data.costText[targetLang] || data.costText.en;
+        } else {
+          costLink.textContent = isFr ? "Contactez-nous pour le tarif et les détails" :
+                                 isAr ? "تواصل معنا لمعرفة السعر وتفاصيل الرحلة" :
+                                 isHe ? "צרו קשר לקבלת מחיר ופרטי המסע" :
+                                 "Contact us for price & trip details";
+        }
       }
 
       // Properties (Tag, Duration, Vehicle, Clients)
@@ -1614,9 +1761,36 @@ const VALUES_DATA = [
       // Button
       const btnEl = card.querySelector('.featured-item__button .button-sm');
       if (btnEl) {
-        btnEl.textContent = isFr ? "Contactez-nous" : isAr ? "تواصل معنا" : isHe ? "צור קשר" : "Contact Us";
+        if (data.btnText) {
+          btnEl.textContent = data.btnText[targetLang] || data.btnText.en;
+        } else {
+          btnEl.textContent = isFr ? "Contactez-nous" : isAr ? "تواصل معنا" : isHe ? "צור קשר" : "Contact Us";
+        }
       }
     });
+
+    // 5b. Custom Tours On-Demand Banner
+    const customBannerTitle = document.getElementById('custom-tours-banner-title');
+    if (customBannerTitle) {
+      customBannerTitle.textContent = isFr ? "Tous nos circuits sont aussi disponibles sur mesure — à la demande" :
+                                      isAr ? "نوفر أيضاً جميع الجولات والرحلات حسب الطلب — 100% مخصصة لكم" :
+                                      isHe ? "כל הטיולים זמינים גם בהתאמה אישית מלאה — לפי בקשה" :
+                                      "All Tours Are Also Available On Demand — 100% Custom";
+    }
+    const customBannerDesc = document.getElementById('custom-tours-banner-desc');
+    if (customBannerDesc) {
+      customBannerDesc.textContent = isFr ? "Que vous souhaitiez une escapade de 4 jours dans le désert, un grand circuit de 11 ou 12 jours, ou un itinéraire entièrement personnalisé pour la durée de votre choix, nous créons chaque voyage privé à la demande selon vos dates, villes et envies." :
+                                     isAr ? "سواء كنتم ترغبون في رحلة صحراوية لمدة 4 أيام، أو جولة كبرى لمدة 11 أو 12 يوماً، أو برنامج مخصص لأي عدد من الأيام، نقوم بتصميم كل رحلة خاصة حسب طلبكم لتناسب تواريخكم ووجهاتكم وميزانيتكم." :
+                                     isHe ? "בין אם אתם מחפשים טיול מדבר של 4 ימים, מסע מקיף של 11 או 12 ימים, או מסלול פרטי מותאם אישית לכל מספר ימים — אנו בונים עבורכם כל טיול לפי בקשה בהתאם לתאריכים, ליעדים ולהעדפות שלכם." :
+                                     "Whether you want a 4-day desert escape, an 11 or 12-day grand tour, or a completely custom itinerary for any number of days, we design every private trip on request to match your exact dates, cities, and preferences.";
+    }
+    const customBannerBtn = document.getElementById('custom-tours-banner-btn');
+    if (customBannerBtn) {
+      customBannerBtn.textContent = isFr ? "Créer Votre Circuit Sur Mesure" :
+                                    isAr ? "صمم رحلتك حسب الطلب" :
+                                    isHe ? "תכננו טיול בהתאמה אישית" :
+                                    "Plan Your Custom Tour";
+    }
 
     // 6. Best Trips Page Cards Mapping
     const bestCards = document.querySelectorAll('.coaches-person');
